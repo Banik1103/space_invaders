@@ -1,4 +1,5 @@
-import greenfoot.*;
+import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot und MouseInfo)
+
 
 public class Screen extends World
 {
@@ -8,19 +9,21 @@ public class Screen extends World
     {    
         super(600, 800, 1);
         setBackground("logo.png");
+        //screenSound.play();
+        
     }
     
     public void act(){
         i++;
         Greenfoot.delay(12);
         
-        if (Greenfoot.isKeyDown("space")) {
+        if(Greenfoot.isKeyDown("space")){
             Greenfoot.setWorld(new Space());
         }
-        if (i%2==1) {
+        if(i%2==1){
             setBackground("logo2.png");
         }
-        if (i%2==0) {
+        if(i%2==0){
             setBackground("logo.png");
         }
     }

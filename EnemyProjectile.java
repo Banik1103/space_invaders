@@ -1,9 +1,8 @@
-import greenfoot.*;
+import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot und MouseInfo)
 
 public class EnemyProjectile extends Projectile
 {   
-    EnemyProjectile()
-    {
+    EnemyProjectile() {
         turn(180);
     }
 }

@@ -5,8 +5,7 @@ public class HealthAnimation extends Actor
     public boolean state;
     private int count = 8;
     
-    public HealthAnimation(boolean s)
-    {
+    public HealthAnimation(boolean s) {
        state = s;
        
        if (state) {

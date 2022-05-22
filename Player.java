@@ -1,17 +1,19 @@
-import greenfoot.*;
+import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot und MouseInfo)
 
 public class Player extends Actor
 {
-    private int score;
     private int lifes = 3;
     private int speed = 1;
     private int power = 0;
-    public static int diff = 1;
     private int count;
+    
+    private int score;
+    public static int diff = 1;
+    
     GreenfootSound shootSound = new GreenfootSound("sfx3.wav");
     GreenfootSound deadP = new GreenfootSound("sfx20.wav");
     
-    void Player()
+     void Player()
     {
         setImage("plyer_01.png");
     }
@@ -21,7 +23,7 @@ public class Player extends Actor
         move();
         count++;
         
-        if (count % 5 == 0) {
+        if (count % 10 == 0) {
             shoot();
             count = 0;
         }
@@ -30,42 +32,41 @@ public class Player extends Actor
         bePower();
     }
     
-    public void move()
+    private void move()
     {
-        if (getX() > 50 && Greenfoot.isKeyDown("left")) {
+        if(getX() > 50 && Greenfoot.isKeyDown("left")) {
             setLocation​(getX() - (5 * speed), getY());
-        } else if (getX() < 550 && Greenfoot.isKeyDown("right")) {
+        } else if(getX() < 550 && Greenfoot.isKeyDown("right")) {
             setLocation​(getX() + (5 * speed), getY());
         }
     }
     
-    public void shoot()
+    private void shoot()
     {
-        if (getWorld().getObjects(PlayerProjectile.class).size() == 0 || power == 1) {
+        if(getWorld().getObjects(PlayerProjectile.class).size() == 0 || power == 1) {
             try {
-                if (Greenfoot.isKeyDown("space")) {
-                    shootSound.play();
-                    getWorld().addObject(new PlayerProjectile(), getX(), getY() - 45);
-                }
+                if(Greenfoot.isKeyDown("space")) {
+                shootSound.play();
+                getWorld().addObject(new PlayerProjectile(), getX(), getY() - 45);
+            }
             } catch (Exception e) {}
         }
     }
     
-    private void dying()
-    {
-        if (isTouching(EnemyProjectile.class)) {
+    private void dying(){
+        if(isTouching(EnemyProjectile.class)){
             getWorld().addObject(new HealthAnimation(false), ((Space)getWorld()).getPlayer().getX() + 20, ((Space)getWorld()).getPlayer().getY() - 25);
-            lifes--;
+            lifes -= 1;
             getWorld().removeObject(getOneIntersectingObject(EnemyProjectile.class));
         }
         
-        if (isTouching(Bomb.class)) {
+        if(isTouching(Bomb.class)){
             getWorld().addObject(new HealthAnimation(false), ((Space)getWorld()).getPlayer().getX() + 20, ((Space)getWorld()).getPlayer().getY() - 25);
-            lifes--;
+            lifes -= 1;
             getWorld().removeObject(getOneIntersectingObject(Bomb.class));
         }
         
-        if (lifes <= 0) {
+        if(lifes <= 0){
             deadP.play();
             Greenfoot.setWorld( new Dead());
             Greenfoot.delay(500);
@@ -73,43 +74,37 @@ public class Player extends Actor
         }
     }
     
-    private void bePower()
-    {
-        if (power == 0) {
+    private void bePower(){
+        if(power == 0){
             speed = 1;
-        } else if(power == 2) {
+        }else if(power == 2){
             getWorld().addObject(new HealthAnimation(true), ((Space)getWorld()).getPlayer().getX() + 20, ((Space)getWorld()).getPlayer().getY() - 25);
             lifes++;
             setPower(0);
-        } else if (power == 3) {
+        } else if (power == 3){
             speed = 2;
         }
     }
     
-    public int getScore()
-    {
+    public int getScore(){
         return score;
     }
     
-    public void setScore(int s)
-    {
+    public void setScore(int s){
         score += s;
     }
     
-    public int getLifes()
-    {
+    public int getLifes() {
         return lifes;
     }
     
-    public void setPower(int i)
-    {
-        if (power >= 0 && power < 4) {
+    public void setPower(int i){
+        if(power >= 0 && power < 4){
             power = i;
         }
     }
     
-    public int getPower()
-    {
+    public int getPower(){
         return power;
     }
     

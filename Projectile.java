@@ -2,14 +2,12 @@ import greenfoot.*;
 
 public class Projectile extends Actor
 {
-    Projectile()
-    {
+    Projectile() {
         turn(270);
     }
-    
     public void act() 
     {
-        if (isAtEdge()) {
+        if(isAtEdge()) {
             getWorld().removeObject(this);
         } else {
             move(5);
