@@ -242,7 +242,7 @@ private void bePower(){
     if(power == 0){
         speed = 1;
     }else if(power == 2){
-        getWorld().addObject(new HealthAnimation(true), 				((Space)getWorld()).getPlayer().getX() + 20, 					((Space)getWorld()).getPlayer().getY() - 25);
+        getWorld().addObject(new HealthAnimation(true),getX() + 20,getY() - 25);
         lifes++;
         setPower(0);
     } else if (power == 3){
