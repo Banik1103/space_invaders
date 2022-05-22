@@ -284,21 +284,21 @@ Der Endboss hat 3 Leben und bewegt sich auf einer parabelförmigen Bahn. Er grei
 ```java
 //Boss.java, line 33
 void shoot()
-    {
-            if (getWorld().getObjects(BossProjectile.class).size() == 0) {
-                shootSound.play();
-                getWorld().addObject(new BossProjectile(), getX(), getY() + 4);
-                if (Greenfoot.getRandomNumber(4)== 1){
-                    getWorld().addObject(new BossProjectile(), getX() -10, getY() + 4);
-                    getWorld().addObject(new BossProjectile(), getX() +10, getY() + 4);
-                    
-                    if (Greenfoot.getRandomNumber(4)== 1){
-                    getWorld().addObject(new BossProjectile(), getX() -20, getY() + 4);
-                    getWorld().addObject(new BossProjectile(), getX() +20, getY() + 4);
-                   }
-                }
+{
+    if (getWorld().getObjects(BossProjectile.class).size() == 0) {
+        shootSound.play();
+        getWorld().addObject(new BossProjectile(), getX(), getY() + 4);
+        if (Greenfoot.getRandomNumber(4)== 1){
+            getWorld().addObject(new BossProjectile(), getX() -10, getY() + 4);
+            getWorld().addObject(new BossProjectile(), getX() +10, getY() + 4);
+
+            if (Greenfoot.getRandomNumber(4)== 1){
+                getWorld().addObject(new BossProjectile(), getX() -20, getY() + 4);
+                getWorld().addObject(new BossProjectile(), getX() +20, getY() + 4);
+            }
         }
     }
+}
 ```
 
 
@@ -307,15 +307,15 @@ Außerdem fliegt ein Mond hin und her, dessen Aufgabe es ist dem Spieler das Leb
 
 ```java
 //Moon.java, line 16
-if(isTouching(PlayerProjectile.class)){
-            getWorld().removeObject(getOneIntersectingObject(PlayerProjectile.class));
-            getWorld().addObject(new Bomb(), getX(), getY() + 4);
-        }
-        
-        if(Greenfoot.getRandomNumber(500)==1){
-            getWorld().addObject(new Bomb(), getX(), getY() + 4);
-        
-        }
+    if(isTouching(PlayerProjectile.class)){
+        getWorld().removeObject(getOneIntersectingObject(PlayerProjectile.class));
+        getWorld().addObject(new Bomb(), getX(), getY() + 4);
+    }
+
+    if(Greenfoot.getRandomNumber(500)==1){
+        getWorld().addObject(new Bomb(), getX(), getY() + 4);
+
+    }
 ```
 
 
