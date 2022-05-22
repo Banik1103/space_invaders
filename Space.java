@@ -16,7 +16,7 @@ public class Space extends World
         super(600, 800, 1);
         setBackground("background.png");
         addObject(player, 300, 770);
-        createEnemies();
+        //createEnemies();
         createBoxes();
     }
     

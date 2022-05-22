@@ -57,8 +57,9 @@ public class Boss extends Actor
         
         if(lifesBoss == 0){
             dead.play();
-            getWorld().removeObject(this);
+            ((Space)getWorld()).getPlayer().setScore(100);
             ((Space)getWorld()).getPlayer().setDiff();
+            getWorld().removeObject(this);
             Greenfoot.delay(150);
             Greenfoot.setWorld(new Space());
             }
