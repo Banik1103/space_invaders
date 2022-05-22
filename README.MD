@@ -236,6 +236,35 @@ Die Klasse Projectile hat die Unterklassen PlayerProjectile und EnemyProjectile,
 
 Um das Spiel interessanter zu gestalten, haben wir Powerups hinzugefügt. Diese Fallen zufällig vom oberen Bildschirmrand und bewegen sich im Zickzack abwärts. Beim Zerschießen des Powerups wird der Parameter power geändert, wodurch der Spieler ein Vorteil erhält. 
 
+```java
+//Player.java, line 77
+private void bePower(){
+    if(power == 0){
+        speed = 1;
+    }else if(power == 2){
+        getWorld().addObject(new HealthAnimation(true), 				((Space)getWorld()).getPlayer().getX() + 20, 					((Space)getWorld()).getPlayer().getY() - 25);
+        lifes++;
+        setPower(0);
+    } else if (power == 3){
+        speed = 2;
+    }
+}
+
+//Player.java, line 44
+private void shoot(){
+    if(getWorld().getObjects(PlayerProjectile.class).size() == 0 || power == 1) {
+        try {
+            if(Greenfoot.isKeyDown("space")) {
+                shootSound.play();
+                getWorld().addObject(new PlayerProjectile(), getX(), getY() - 45);
+            }
+        } catch (Exception e) {}
+    }
+}
+```
+
+
+
 Es gibt drei verschiedene Items die folgende Auswirkungen auf den Spieler haben:
 
 | Farbe | Beschreibung                                              |
